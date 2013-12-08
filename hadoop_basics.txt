@@ -1,0 +1,21 @@
+#small dataset
+head -50 purchases.txt > testfile
+
+#run data into mapper
+cat testfile | ./mapper.py
+
+#sim-hadoop
+cat testfile | ./mapper.py | sort | ./reducer.py
+
+#hadoop commands
+hadoop fs -ls  #ls a dir
+hadoop fs -mkdir #make a dir
+hadoop fs -mv  #move stuff
+hadoop fs -put filename  #puts 'filename' into HDFS
+
+
+#running hadoop cluster
+hs mapper.py reducer.py myinput output2
+
+#reading 
+hadoop fs -cat output2/part-00000 | less
